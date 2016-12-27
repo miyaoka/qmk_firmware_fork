@@ -28,9 +28,9 @@
 #define KC_NEXT C(KC_TAB)
 #define KC_PREV SC(KC_TAB)
 
-#define MORSE_TERM_SHORT 170
-#define MORSE_TERM_CHARA 510
-#define MORSE_TERM_WORD 1190
+#define MORSE_TERM_SHORT 120
+#define MORSE_TERM_CHARA MORSE_TERM_SHORT * 3
+#define MORSE_TERM_WORD MORSE_TERM_SHORT * 7
 
 //Layers
 enum layers {
