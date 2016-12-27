@@ -4,6 +4,7 @@
 #include "ergodox.h"
 #include "debug.h"
 #include "action_layer.h"
+#include <string.h>
 
 //Alias
 #define C(kc) LCTL(kc)
@@ -26,6 +27,9 @@
 #define KC_M_B3 KC_MS_BTN3
 #define KC_NEXT C(KC_TAB)
 #define KC_PREV SC(KC_TAB)
+
+#define MORSE_TERM_SHORT 170
+#define MORSE_TERM_CHARA 510
 
 //Layers
 enum layers {
@@ -57,11 +61,58 @@ enum custom_keycodes {
   // os
   MAC,
   WIN,
+
+  MORSE,
 };
 
 enum macros {
   T_EISU = 0,
   T_KANA
+};
+
+// morse
+uint16_t last_morse_timer = 0;
+char morse_buffer[6] = "";
+const char *morse_short = ".";
+const char *morse_long = "_";
+const char *morse_el;
+const char *morse_codes[36] = {
+  "._",
+  "_...",
+  "_._.",
+  "_..",
+  ".",
+  ".._.",
+  "__.",
+  "....",
+  "..",
+  ".___",
+  "_._",
+  "._..",
+  "__",
+  "_.",
+  "___",
+  ".__.",
+  "__._",
+  "._.",
+  "...",
+  "_",
+  ".._",
+  "..._",
+  ".__",
+  "_.._",
+  "_.__",
+  "__..",
+  "_____",
+  ".____",
+  "..___",
+  "...__",
+  "...._",
+  ".....",
+  "_....",
+  "__...",
+  "___..",
+  "____."
 };
 
 uint16_t hold_timers[MATRIX_ROWS][MATRIX_COLS];
@@ -108,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
   //righthand
-  _______,    KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_PSCR,
+  MORSE,      KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_PSCR,
   KC_RBRC,    _______,    _______,    _______,    _______,    _______,    KC_CAPS,
               _______,    _______,    _______,    _______,    _______,    KC_RCTL,
   CTL_T(KC_QUOT),    _______,    _______,    _______,    _______,    _______,    KC_RSFT,
@@ -519,7 +570,30 @@ bool is_tap (keyrecord_t *record) {
   && timer_elapsed (hold_timers[record->event.key.row][record->event.key.col]) < TAPPING_TERM;
 }
 
+void process_morse(void) {
+  if (
+    last_morse_timer == 0 ||
+    timer_elapsed (last_morse_timer) < MORSE_TERM_CHARA
+  ) {
+    return;
+  }
+
+  last_morse_timer = 0;
+
+  int i;
+  for(i = 0; i < 36; i++) {
+    if (strcmp(morse_codes[i], morse_buffer) == 0) {
+      dprint(" ");
+      type_code(KC_A + i);
+      break;
+    }
+  }
+  dprint("\n");
+  morse_buffer[0] = '\0';
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
   // record pressed timer
   if (record->event.pressed) {
     hold_timers[record->event.key.row][record->event.key.col] = timer_read();
@@ -576,7 +650,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case MORSE:
+      if (record->event.pressed) {
+        last_morse_timer = 0;
+        return false;
+        break;
+      }
+      if (!hold_timers[record->event.key.row][record->event.key.col]) {
+        return false;
+        break;
+      }
+
+      morse_el = timer_elapsed (hold_timers[record->event.key.row][record->event.key.col]) < MORSE_TERM_SHORT
+      ? morse_short
+      : morse_long;
+
+      strcat(morse_buffer, morse_el);
+
+      last_morse_timer = timer_read();
+
+      dprintf("%s", morse_el);
+
+      return false;
+      break;
   }
+
   return true;
 }
 
@@ -615,4 +713,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 void matrix_init_user(void) {
   persistant_default_layer_set(1UL<<L_MAC);
   layer_move(L_QWDR);
+};
+
+// Runs constantly in the background, in a loop.
+void matrix_scan_user(void) {
+  process_morse();
 };
