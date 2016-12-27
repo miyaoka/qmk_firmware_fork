@@ -30,6 +30,7 @@
 
 #define MORSE_TERM_SHORT 170
 #define MORSE_TERM_CHARA 510
+#define MORSE_TERM_WORD 1190
 
 //Layers
 enum layers {
@@ -571,15 +572,24 @@ bool is_tap (keyrecord_t *record) {
 }
 
 void process_morse(void) {
-  if (
-    last_morse_timer == 0 ||
-    timer_elapsed (last_morse_timer) < MORSE_TERM_CHARA
-  ) {
+  if (last_morse_timer == 0){
+    return;
+  }
+  uint16_t t = timer_elapsed (last_morse_timer);
+
+  // type space
+  if (MORSE_TERM_WORD < t){
+    type_code(KC_SPC);
+    dprint("\n");
+    last_morse_timer = 0;
     return;
   }
 
-  last_morse_timer = 0;
+  if (t < MORSE_TERM_CHARA || morse_buffer[0] == '\0'){
+    return;
+  }
 
+  // type chara
   int i;
   for(i = 0; i < 36; i++) {
     if (strcmp(morse_codes[i], morse_buffer) == 0) {
