@@ -69,105 +69,96 @@ enum macros {
 // unicode map
 
 enum unicode_name {
-  SUSHI, //🍣
-  GRIN, // grinning face 😊
-  TJOY, // tears of joy 😂
-  SMILE, // grining face with smiling eyes 😁
-  HEART, // heart ❤
-  EYERT, // smiling face with heart shaped eyes 😍
-  CRY, // crying face 😭
-  SMEYE, // smiling face with smiling eyes 😊
+  // commit msgs
+  TADA, // Initial Commit	🎉
+  BOOKM, // Version Tag	🔖
+  SPARK, // New Feature	✨
+  BUG, // Bugfix	🐛
+  CARDI, // Metadata	📇
+  PACKG, // Refactoring	📦
+  BOOKS, // Documentation	📚
+  GLOBE, // Internationalization	🌐
+  HORSE, // Performance	🐎
+  LIPST, // Cosmetic	💄
+  WRENC, // Tooling	🔧
+  ROTLI, // Tests	🚨
+  POOP, // Deprecation	💩
+  CONST, // Work In Progress (WIP)	🚧
+
+  // foods
+  SUSHI, // 🍣 1F363
+  MEAT, // 🍖 1F356
+  PIZZA, // 🍕 1F355
+  HAMBE, // 🍔 1F354
+  RICEB, // 🍙 1F359
+  SCAKE, // 🍰 1F370
+
+  // drink
+  BEER, // 🍺 1F37A
+  COCKT, // 🍸 1F378
+  SAKE, // 🍶 1F376
+  TEA, // 🍵 1F375
+  COFFE, // ☕ 2615
+
+
+  // smiles
+  ANGEL, //Smiling Face With Halo 😇 1F607
+  GRIN, // grinning face 😀
+  NEUT, // Neutral Face 😐
   UNAMU, // unamused 😒
-  KISS, // kiss 😘
-  HART2, // two hearts 💕
   WEARY, // weary 😩
-  OKHND, // ok hand sign 👌
-  PENSV, // pensive 😔
-  SMIRK, // smirk 😏
-  RECYC, // recycle ♻
-  WINK, // wink 😉
+
   THMUP, // thumb up 👍
   THMDN, // thumb down 👎
   PRAY, // pray 🙏
-  PHEW, // relieved 😌
-  MUSIC, // musical notes
-  FLUSH, // flushed 😳
   CELEB, // celebration 🙌
-  CRY2, // crying face 😢
-  COOL, // smile with sunglasses 😎
-  NOEVS, // see no evil
-  NOEVH, // hear no evil
-  NOEVK, // speak no evil
-  POO, // pile of poo
-  EYES, // eyes
-  VIC, // victory hand
-  BHART, // broken heart
-  SLEEP, // sleeping face
-  SMIL2, // smiling face with open mouth & sweat
-  HUNRD, // 100
-  CONFU, // confused
-  TONGU, // face with tongue & winking eye
-  DISAP, // disappointed
-  YUMMY, // face savoring delicious food
-  CLAP, // hand clapping
-  FEAR, // face screaming in fear
-  HORNS, // smiling face with horns
-  HALO, // smiling face with halo
-  BYE, // waving hand
-  SUN, // sun
-  MOON, // moon
-  SKULL, // skull
+  OKHND, // ok hand sign 👌
 };
 
 const uint32_t PROGMEM unicode_map[] = {
-  [SUSHI] = 0x1F363,
+  [TADA] = 0x1F389,
+  [BOOKM] = 0x1F516,
+  [SPARK] = 0x2728,
+  [BUG] = 0x1F41B,
+  [CARDI] = 0x1F4C7,
+  [PACKG] = 0x1F4E6,
+  [BOOKS] = 0x1F4DA,
+  [GLOBE] = 0x1F310,
+  [HORSE] = 0x1F40E,
+  [LIPST] = 0x1F484,
+  [WRENC] = 0x1F527,
+  [ROTLI] = 0x1F6A8,
+  [POOP] = 0x1F4A9,
+  [CONST] = 0x1F6A7,
+
+  // foods
+  [SUSHI] = 0x1F363, // 🍣
+  [HAMBE] = 0x1F354, // 🍔 1F354
+  [PIZZA] = 0x1F355, // 🍕 1F355
+  [MEAT] = 0x1F356, // 🍖
+  [RICEB] = 0x1F359, // 🍙 1F359
+  [SCAKE] = 0x1F370, // 🍰 1F370
+
+  // drink
+  [COFFE] = 0x2615, // ☕ 2615
+  [TEA] = 0x1F375, // 🍵 1F375
+  [SAKE] = 0x1F376, // 🍶 1F376
+  [COCKT] = 0x1F378, // 🍸 1F378
+  [BEER] = 0x1F37A, // 🍺 1F37A
+
+
+  // smiles
+  [ANGEL] = 0x1F607, //Smiling Face With Halo 😇 1F607
   [GRIN] = 0x1F600,
-  [TJOY] = 0x1F602,
-  [SMILE] = 0x1F601,
-  [HEART] = 0x2764,
-  [EYERT] = 0x1f60d,
-  [CRY] = 0x1f62d,
-  [SMEYE] = 0x1F60A,
+  [NEUT] = 0x1F610, // Neutral Face 😐
   [UNAMU] = 0x1F612,
-  [KISS] = 0x1F618,
-  [HART2] = 0x1F495,
   [WEARY] = 0x1F629,
-  [OKHND] = 0x1F44C,
-  [PENSV] = 0x1F614,
-  [SMIRK] = 0x1F60F,
-  [RECYC] = 0x267B,
-  [WINK] = 0x1F609,
+
   [THMUP] = 0x1F44D,
   [THMDN] = 0x1F44E,
   [PRAY] = 0x1F64F,
-  [PHEW] = 0x1F60C,
-  [MUSIC] = 0x1F3B6,
-  [FLUSH] = 0x1F633,
   [CELEB] = 0x1F64C,
-  [CRY2] = 0x1F622,
-  [COOL] = 0x1F60E,
-  [NOEVS] = 0x1F648,
-  [NOEVH] = 0x1F649,
-  [NOEVK] = 0x1F64A,
-  [POO] = 0x1F4A9,
-  [EYES] = 0x1F440,
-  [VIC] = 0x270C,
-  [BHART] = 0x1F494,
-  [SLEEP] = 0x1F634,
-  [SMIL2] = 0x1F605,
-  [HUNRD] = 0x1F4AF,
-  [CONFU] = 0x1F615,
-  [TONGU] = 0x1F61C,
-  [DISAP] = 0x1F61E,
-  [YUMMY] = 0x1F60B,
-  [CLAP] = 0x1F44F,
-  [FEAR] = 0x1F631,
-  [HORNS] = 0x1F608,
-  [HALO] = 0x1F607,
-  [BYE] = 0x1F44B,
-  [SUN] = 0x2600,
-  [MOON] = 0x1F314,
-  [SKULL] = 0x1F480,
+
 };
 
 uint16_t hold_timers[MATRIX_ROWS][MATRIX_COLS];
@@ -182,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * | ESC    |   1! |   2@ |   3# |   4$ |   5% |      |           |      |   6^ |   7& |   8* |   9( |   0) | PSCR   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Tab    |      |      |      |      |      |  [{  |           |  ]}  |      |      |      |      |      | CAPS   |
+ * | Tab         |      |      |      |  [{  |           |  ]}  |      |      |      |      |      | CAPS   |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LCtrl  |      |      |      |      |      |------|           |------|      |      |      |      |      | RCtrl  |
  * |--------+------+------+------+------+------|  Tab |           |  '"  |------+------+------+------+------+--------|
@@ -218,7 +209,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_RBRC,    _______,    _______,    _______,    _______,    _______,    KC_CAPS,
               _______,    _______,    _______,    _______,    _______,    KC_RCTL,
   CTL_T(KC_QUOT),    _______,    _______,    _______,    _______,    _______,    KC_RSFT,
-                          SFT_T(KC_EQL),    KC_BSPC,    KC_DEL,     _______,    X(SUN),
+                          SFT_T(KC_EQL),    KC_BSPC,    KC_DEL,     _______,    _______,
 
   _______,    _______,
   _______,
@@ -484,14 +475,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [L_SYMB] = KEYMAP(
     // left hand
-  _______,    _______,    _______,    _______,    _______,    _______,    _______,
+  _______,    X(ANGEL),   X(GRIN),    X(NEUT),    X(UNAMU),   X(WEARY),   _______,
   _______,    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_LT,
   _______,    KC_1,       KC_2,       KC_3,       KC_4,       KC_5,
-  _______,    _______,    _______,    _______,    _______,    _______,    _______,
+  _______,    X(BUG),     X(SPARK),   X(CONST),   X(PACKG),   X(LIPST),   _______,
   _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
 
   //righthand
-  _______,    _______,    _______,    _______,    _______,    _______,    _______,
+  _______,    X(SUSHI),   X(HAMBE),   X(PIZZA),   X(MEAT),    X(RICEB),   _______,
   KC_GT,      KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______,
               KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       _______,
   _______,    _______,    _______,    _______,    _______,    _______,    _______,
@@ -625,11 +616,37 @@ bool is_tap (keyrecord_t *record) {
   && timer_elapsed (hold_timers[record->event.key.row][record->event.key.col]) < TAPPING_TERM;
 }
 
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // record pressed timer
   if (record->event.pressed) {
     hold_timers[record->event.key.row][record->event.key.col] = timer_read();
   }
+
+#ifdef UNICODEMAP_ENABLE
+  if ((keycode & QK_UNICODE_MAP) == QK_UNICODE_MAP && record->event.pressed) {
+    const uint32_t* map = unicode_map;
+    uint16_t index = keycode & 0x7FF;
+    uint32_t code = pgm_read_dword_far(&map[index]);
+    if (code > 0xFFFFF) {
+      // when character is out of range supported by the OS
+      unicode_map_input_error();
+    } else {
+      unicode_input_start();
+
+      if (code > 0xFFFF){
+        code -= 0x10000;
+
+        register_hex32(0xD800 | (code >> 10));
+        register_hex32(0xDC00 | (code & 0x3FF));
+      } else {
+        register_hex32(code);
+      }
+      unicode_input_finish();
+    }
+    return false;
+  }
+#endif
 
   switch (keycode) {
     //--layers--
